@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cookie传值</title>
+    <style>
+        input {
+            width:70px;
+        }
+    </style>
+    <script src="jquery-1.12.0.js"></script>
+    <!--<script src="jquery.cookie.js"></script>-->
+</head>
+<body>
+姓名:<input type="text" name="username"><br /><br />
+年龄:<input type="text" name="age"><br /><br />
+性别:<input type="text" name="sex"><br /><br />
+<input type="button" value="保存" id="btn">
+
+<script>
+    function setCookie(name,value) {
+        var Day=30;
+        var exp=new Date();
+        exp.setTime(exp.getTime() +Day*24*60*60*1000);
+        document.cookie=name+"="+decodeURI(value)+";expires="+exp.toGMTString();
+        location.href="cookie1.html";
+    }
+    var oBtn = document.getElementById('btn');
+    oBtn.onclick = function(){
+       setCookie('mycookie',document.all.username.value);
+       setCookie('agecookie',document.all.age.value);
+       setCookie('sexcookie',document.all.sex.value);
+    }
+
+</script>
+</body>
+</html>
+

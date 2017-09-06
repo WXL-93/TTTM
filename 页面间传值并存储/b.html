@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>接收</title>
+    <script src="jquery-1.12.0.js"></script>
+    <style>
+        table {
+            border-collapse:collapse;
+        }
+        td{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <!--<td>1</td>-->
+            <!--<td>2</td>-->
+            <!--<td>3</td>-->
+        </tr>
+    </table>
+    <script>
+
+//        一种方法
+//        var url=location.search;
+//        var request=new Object();
+//        if (url.indexOf("?")!=-1){
+//            var str=url.substr(1), //去掉?号
+//                aStrs=str.split("&");
+//            for (var i=0;i<aStrs.length;i++){
+//                request[aStrs[i].split("=")[0]]=decodeURI(aStrs[i].split("=")[1]);
+//            }
+//        }
+//        alert('姓名：'+request["username"]);
+//        alert('性别：'+request["sex"]);
+
+
+//        封装requer函数
+        function Request(url,strName) {
+            var strHref = url;
+            var intPos = strHref.indexOf("?");
+            var strRight = strHref.substr(intPos + 1);
+            var arrTmp = strRight.split("&");
+            for(var i = 0; i < arrTmp.length; i++)
+            {
+                var arrTemp = arrTmp[i ].split("=");
+                if(decodeURIComponent(arrTemp[0]).toUpperCase() == strName.toUpperCase())
+                    return decodeURIComponent(arrTemp[1]);
+            }
+            return "";
+        }
+
+        $('tr').append("<td>姓名：</td><td>"+Request(location.search,"username")+"</td><td>性别：</td><td>"+Request(location.search,"sex")+"</td>");
+//        $('tr').append("");
+//        alert('姓名：' + Request(location.search,"username"));
+//        alert('性别：' + Request(location.search,"sex"));
+    </script>
+</body>
+</html>

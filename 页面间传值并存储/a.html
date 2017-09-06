@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>传值</title>
+</head>
+<body>
+    姓名:<input type="text" name="username">
+    性别:<input type="text" name="sex">
+    <input type="button" value="传值给b.html" onclick="post()">
+
+    <script>
+        function post(){
+            var url="b.html?username="+decodeURI(document.all.username.value);
+            url+="&sex="+decodeURI(document.all.sex.value);
+            location.href=url;
+        }
+
+    </script>
+</body>
+</html>
